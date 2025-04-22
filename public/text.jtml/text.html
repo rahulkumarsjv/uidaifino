@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /* Flex container for layout */
+        .flex-container {
+          display: flex;
+          flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+          border: solid 1px;
+          padding: 10px;
+          width: 90%; /* Reduced width to fit better on smaller screens */
+          max-width: 700px; /* Sets a max width for larger screens */
+          height: auto; /* Auto height to accommodate content */
+          background-color: rgb(37, 214, 212);
+          margin: 20px auto; /* Centers the container and adds spacing */
+        }
+      
+        /* Individual flex items */
+        .flex-item {
+          margin: 5px;
+          padding: 10px;
+          border: 1px solid #ddd;
+          background-color: #fff;
+          flex: 1 1 100%; /* Allows the item to grow and shrink, takes full width on small screens */
+          box-sizing: border-box; /* Includes padding and border in the width */
+        }
+      
+        /* Styling for the header in flex items */
+        .flex-item h1 {
+          font-size: 2em; /* Relative font size for better scaling */
+          margin: 0; /* Removes default margin */
+        }
+      
+        /* Responsive image styling */
+        .flex-item img {
+          width: 30%;
+          height: auto; /* Maintains aspect ratio */
+          float: left;
+          margin-right: 10px; /* Adds spacing between the image and text */
+        }
+      
+        /* Centered text and flex alignment */
+        #jiologotext {
+          font-size: 1.5em; /* Relative font size */
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      
+        /* Full width image for flex-item2 */
+        .flex-item2 img {
+          width: 100%;
+          height: auto; /* Maintains aspect ratio */
+        }
+      
+        /* Positioning and sizing of images in flex-item4 */
+        .flex-item4 img {
+          position: relative;
+          width: 12%;
+          height: auto; /* Maintains aspect ratio */
+          margin-left: 20%;
+          max-width: 100px; /* Max width to control size on small screens */
+        }
+      
+        /* Flex item 5 positioning */
+        .flex-item5 {
+          font-size: 1.5em;
+          position: relative;
+          margin-left: 20%;
+          margin-top: 10px; /* Adds spacing from the top */
+        }
+      
+        /* Large font size for passbook */
+        #passbook {
+          font-size: 2em;
+          margin-left: 5%;
+        }
+      
+        /* Labels with larger font size */
+        label {
+          font-size: 1.2em;
+        }
+      
+        /* Responsive input fields */
+        input {
+          width: 100%; /* Full width within container */
+          height: 50px;
+          box-sizing: border-box; /* Includes padding and border in the width */
+        }
+      
+        /* Jio payment bank background container */
+        .jiopaymentbankback {
+          border: solid 1px;
+          width: 100%;
+          max-width: 700px; /* Sets max width for larger screens */
+          height: auto; /* Adjusts height based on content */
+          margin: 20px auto; /* Centers the container and adds spacing */
+          overflow: hidden; /* Ensures no overflow */
+        }
+      
+        /* Image within jio payment bank background */
+        .jiopaymentbankback img {
+          width: 100%;
+          height: auto; /* Maintains aspect ratio */
+        }
+      
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+          .flex-container {
+            width: 100%;
+            padding: 5px; /* Reduces padding on smaller screens */
+          }
+      
+          .flex-item {
+            font-size: 1em; /* Adjusts font size */
+          }
+      
+          .flex-item4 img {
+            width: 20%; /* Increases width for better visibility */
+          }
+      
+          .flex-item5 {
+            font-size: 1em; /* Adjusts font size */
+          }
+      
+          #passbook {
+            font-size: 1.5em; /* Reduces font size */
+          }
+      
+          input {
+            width: 100%; /* Full width on small screens */
+          }
+        }
+      </style>
+      
+      <div class="flex-container">
+        <div class="flex-item">
+          <h1>Flex Item 1</h1>
+          <img src="images/jio_logo.jpg" alt="Jio Logo">
+        </div>
+        <div class="flex-item2">
+          <img src="images/sample-image.jpg" alt="Sample Image">
+        </div>
+        <div class="flex-item4">
+          <img src="images/side-image.jpg" alt="Side Image">
+        </div>
+        <div class="flex-item5">
+          <p>Some Text Here</p>
+        </div>
+      </div>
+      
+      <div class="jiopaymentbankback">
+        <img src="images/jio_payment_bank_back_passbook.jpg" alt="Jio Payment Bank Passbook">
+      </div>
+      
+</body>
+</html>

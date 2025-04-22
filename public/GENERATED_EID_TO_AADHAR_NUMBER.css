@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.borderwith {
+    border: 2px solid #ddd;
+    padding: 20px;
+    margin: 20px;
+    background-color: #e4e4e4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.weare {
+    margin-bottom: 15px;
+    border: solid 1px black;
+    background-color: white;
+}
+
+.Trying p {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+.out{
+    border:  solid 1px black;
+    background-color: rgb(255, 231, 169);
+    font-size: 20px;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+}
+
+#image {
+    margin-top: 10px;
+    box-shadow: 5px 5px 5px gray;
+    width: 100px;
+    padding: 20px;
+    font-weight: 400;
+    height: 40px;
+    user-select: none;
+    text-decoration: line-through;
+    font-style: italic;
+    font-size: large;
+    border: 2px solid red;
+    margin-left: 10px;
+}
+
+#user-input {
+    box-shadow: 5px 5px 5px gray;
+    padding: 10px;
+    height: 40px;
+    border: none;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#btn {
+    box-shadow: 3px 3px 5px gray;
+    color: white;
+    margin: 10px;
+    background-color: #8b0000; /* Dark red */
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#btn:hover {
+    background-color: #a52a2a; /* Lighter brown-red on hover */
+}
+
+.generate {
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.fas.fa-sync {
+    cursor: pointer;
+    color: #333;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+p#key {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+}

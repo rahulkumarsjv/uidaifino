@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text with Voice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h3 {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: none; /* शुरुआत में छिपा हुआ */
+        }
+
+        .visible {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="h31">
+        <h3>बहुत प्यार करना है तो जमकार करो याने के आज प्यार और कल खिलवाड़ आजकल तो बस प्यार दो दिन का ही होता है बाकी तो लड़कियाँ खिलवड़ ही करती हैं</h3>
+    </div>
+    <div class="h32">
+        <h3>पहले तो बोला करते थे लड़के खिलवार करते हैं लेकिन आजकल के जमाने में तो लड़कियां भी करती हैं उसका क्या लड़कियों से ज्यादा लड़के ज्यादा लड़कियां करती है</h3>
+    </div>
+    <div class="h33">
+        <h3>और यह हंड्रेड परसेंट सच हैकी क्या अगर अभी कोई लड़कियां तो मैं बाबू सोना बोलती है तो कल को तुमसे बेस्ट कोई मिल गया तो उसके साथ ही हो जाएगी </h3>
+    </div>
+    <div class="h34">
+        <h3>और सच्ची मोहब्बत करने वाले तो 100 परसेंट में से 10 परसेंट ही होते हैं और जिसमेंसे कुछ तो भड़का देते हैं और कुछ अपने ही पीठ में छोड़ वोट देते हैं</h3>
+    </div>
+    <div class="h35">
+        <h3>फिर चाहे उसके शादी हो गई हो या नहीं हुई हो लेकिन यह तो सच है</h3>
+    </div>
+
+    <script>
+        // सभी divs को एक Array में रखते हैं
+        const divs = document.querySelectorAll('div');
+        let currentIndex = 0;
+
+        // Text-to-Speech function
+        function speakText(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'hi-IN'; // हिंदी भाषा के लिए
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function showNextDiv() {
+            // पिछले div को छिपाएं (यदि कोई हो)
+            if (currentIndex > 0) {
+                divs[currentIndex - 1].querySelector('h3').classList.remove('visible');
+            }
+            
+            // वर्तमान div दिखाएं और आवाज चलाएं
+            if (currentIndex < divs.length) {
+                const currentDiv = divs[currentIndex].querySelector('h3');
+                currentDiv.classList.add('visible');
+                
+                // टेक्स्ट पढ़ने के लिए Text-to-Speech चलाएं
+                const text = currentDiv.textContent;
+                speakText(text);
+                
+                // अगले div के लिए timeout सेट करें
+                currentIndex++;
+                setTimeout(showNextDiv, 6000); // हर 6 सेकंड के बाद अगला div दिखाएं
+            }
+        }
+
+        // पेज लोड होने पर animation शुरू करें
+        window.onload = function() {
+            showNextDiv();
+        };
+    </script>
+</body>
+</html>

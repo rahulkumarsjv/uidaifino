@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RA DIGITAL INDIA Cyber Cafe</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        .hidden {
+            display: none;
+        }
+        .download-btn {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>PAN Card Applications</h1>
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="filterTable()">
+    <table id="panTable">
+        <thead>
+            <tr>
+                <th>Unique Number</th>
+                <th>Applicant Category</th>
+                <th>Date</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Status</th>
+                <th>Photos</th>
+                <th>Signature</th>
+                <th>PDF Documents</th>
+            </tr>
+        </thead>
+        <tbody id="panTableBody">
+            <!-- Rows populated dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        const correctPassword = 'Anju@rahul'; // Password for secure downloads
+
+        function promptPassword(callback, type, path, elementId) {
+            const userPassword = prompt('Enter password to access this file:');
+            if (userPassword === correctPassword) {
+                callback(type, path, elementId);
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        function setupDownloadLink(type, path, elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.href = `/uploads/${path}`;
+                element.download = ''; // Enable download
+                element.classList.remove('hidden'); // Make the link visible
+                element.textContent = `Download ${type}`;
+            }
+        }
+
+        async function fetchData() {
+            try {
+                const response = await fetch('/get-all-pan-applications');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                populateTable(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        function populateTable(data) {
+            const tableBody = document.getElementById('panTableBody');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            data.forEach(application => {
+                const row = document.createElement('tr');
+
+                // Generate download buttons with password protection
+                const photoHTML = application.filePath 
+                    ? `<button class="download-btn" onclick="promptPassword(setupDownloadLink, 'Photo', '${application.filePath}', 'photo-${application.uniqueNumber}')">View/Download Photo</button>
+                       <a id="photo-${application.uniqueNumber}" class="hidden"></a>`
+                    : 'N/A';
+
+                const signatureHTML = application.signaturePath 
+                    ? `<button class="download-btn" onclick="promptPassword(setupDownloadLink, 'Signature', '${application.signaturePath}', 'signature-${application.uniqueNumber}')">View/Download Signature</button>
+                       <a id="signature-${application.uniqueNumber}" class="hidden"></a>`
+                    : 'N/A';
+
+                const pdfHTML = application.documentsPath 
+                    ? `<button class="download-btn" onclick="promptPassword(setupDownloadLink, 'PDF', '${application.documentsPath}', 'pdf-${application.uniqueNumber}')">View/Download PDF</button>
+                       <a id="pdf-${application.uniqueNumber}" class="hidden"></a>`
+                    : 'N/A';
+
+                row.innerHTML = `
+                    <td>${application.uniqueNumber || 'N/A'}</td>
+                    <td>${application.category_of_applicant || 'N/A'}</td>
+                    <td>${application.date || 'N/A'}</td>
+                    <td>${application.city || 'N/A'}</td>
+                    <td>${application.state || 'N/A'}</td>
+                    <td>${application.status || 'N/A'}</td>
+                    <td>${photoHTML}</td>
+                    <td>${signatureHTML}</td>
+                    <td>${pdfHTML}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function filterTable() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#panTableBody tr');
+
+            rows.forEach(row => {
+                const cells = Array.from(row.getElementsByTagName('td'));
+                const matches = cells.some(cell => cell.textContent.toLowerCase().includes(searchValue));
+                row.style.display = matches ? '' : 'none';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchData);
+    </script>
+</body>
+</html>

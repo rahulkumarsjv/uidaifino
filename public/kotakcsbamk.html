@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA DIGITAL INDIA Cyber Cafe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="kotakbc5">
+        <h1 style="text-align: center; margin-top: 2%;">Kotak Mahindra Bank BC Certificate</h1>
+        <h3 style="border: solid black 1px; width: 100%; background-color: red; color:yellow; margin-top: 2%;"><marquee>Kotak Mahindra Bank CSP BC certificate create download now all India member</marquee></h3>
+        <p style="font-size: 20px; color: blue; margin-top: 2%;">कृपया ध्यान दें कि कोटक महिंद्रा बैंक सीएसपी बीसी सर्टिफिकेट केवल उन्हीं लोगों के लिए मान्य होगा जिनकी आईडी आरए डिजिटल इंडिया के माध्यम से कोटक महिंद्रा बैंक सीएसपी पर सक्रिय है। अन्यथा, यह प्रमाण पत्र अमान्य होगा।</p>
+    </div>
+
+    <div class="kotat">
+      <form id="certificateForm">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control m-4" id="firstName" placeholder="First name" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control m-4" id="lastName" placeholder="Last name" required>
+            </div>
+            <div class="col">
+                <select class="form-select m-4" id="gender" required>
+                    <option selected disabled>Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control m-4" id="motherName" placeholder="Mother Name" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control m-4" id="fatherName" placeholder="Father Name" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control m-4" id="mobileNumber" placeholder="Mobile Number" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="email" class="form-control m-4" id="email" placeholder="Email ID" required>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control m-4" id="kotakBCPartner" placeholder="Kotak BC Partner/UserName" required>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary form-control m-4">Certificate Download</button>
+            </div>
+        </div>
+    </form>    
+    </div>
+
+    <script>
+        // Store form data in local storage on form submission
+        document.getElementById('certificateForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent page reload
+
+            // Capture form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                gender: document.getElementById('gender').value,
+                motherName: document.getElementById('motherName').value,
+                fatherName: document.getElementById('fatherName').value,
+                mobileNumber: document.getElementById('mobileNumber').value,
+                email: document.getElementById('email').value,
+                kotakBCPartner: document.getElementById('kotakBCPartner').value
+            };
+
+            // Save to local storage
+            localStorage.setItem('certificateData', JSON.stringify(formData));
+
+            // Redirect to display page (optional)
+            window.location.href = 'kotakcsbamkdispy.html';
+        });
+    </script>
+</body>
+</html>

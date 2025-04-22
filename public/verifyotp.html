@@ -1,0 +1,134 @@
+<!-- Form Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA DIGITAL INDIA Cyber Cafe</title>
+    <style>
+        /* Style settings for form and buttons */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            padding: 2em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1em;
+        }
+        .form-group label {
+            margin-bottom: .5em;
+            color: #333333;
+            display: block;
+        }
+        .form-group input {
+            border: 1px solid #CCCCCC;
+            padding: .5em;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .captcha-box {
+            font-size: 2em;
+            font-weight: bold;
+            padding: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .refresh-btn, .submit-btn {
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 0.5em;
+        }
+        .refresh-btn:hover, .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="myForm">
+            <div class="form-group">
+                <label for="couponNumber">Coupon Number</label>
+                <input type="text" id="couponNumber" name="couponNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="userName">Name</label>
+                <input type="text" id="userName" name="userName" required>
+            </div>
+            <div id="captcha" class="captcha-box">ABC123</div>
+            <button type="button" class="refresh-btn" onclick="generateCaptcha()">Refresh CAPTCHA</button>
+            <div class="form-group">
+                <input type="text" id="captchaInput" class="form-group" placeholder="Enter CAPTCHA" required>
+            </div>
+            <button type="button" class="submit-btn" onclick="submitForm()">Submit</button>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+
+    <script>
+        const couponDatabase = {
+            // Simulated database of coupons
+            "ABC123": { name: "John Doe", status: "Approved" },
+            "XYZ789": { name: "Jane Smith", status: "Pending" },
+            "LMN456": { name: "Michael Johnson", status: "Approved" }
+        };
+
+        function generateCaptcha() {
+            const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                captcha += charset[randomIndex];
+            }
+            document.getElementById('captcha').innerText = captcha;
+        }
+
+        function submitForm() {
+            const captcha = document.getElementById('captcha').innerText;
+            const userCaptchaInput = document.getElementById('captchaInput').value;
+            const couponNumber = document.getElementById('couponNumber').value.trim();
+            const messageDiv = document.getElementById('message');
+
+            if (userCaptchaInput === captcha) {
+                if (couponDatabase[couponNumber]) {
+                    const matchedData = couponDatabase[couponNumber];
+                    localStorage.setItem('matchedCouponData', JSON.stringify(matchedData));
+                    window.location.href = 'utipsaapplicationstatus.html'; // Redirect to next page to display data
+                } else {
+                    messageDiv.innerText = 'Coupon Number not found in the database.';
+                    messageDiv.style.color = 'red';
+                }
+            } else {
+                messageDiv.innerText = 'Incorrect CAPTCHA, please try again.';
+                messageDiv.style.color = 'red';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', generateCaptcha);
+    </script>
+</body>
+</html>

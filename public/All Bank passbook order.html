@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        input[type="file"],
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: none;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .photo-upload {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .photo-upload img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            input[type="submit"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>All Bank Passbook Order</h2>
+        <form action="/allbankpassbook" method="post" enctype="multipart/form-data">
+            <label for="bankName">Bank Name:</label>
+            <input type="text" id="bankName" name="bankName" required>
+
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="fatherName">Father's Name:</label>
+            <input type="text" id="fatherName" name="fatherName" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" required>
+
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+
+            <label for="pinCode">Pin Code:</label>
+            <input type="text" id="pinCode" name="pinCode" pattern="[0-9]{6}" required>
+
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

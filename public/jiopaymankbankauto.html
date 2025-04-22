@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Account Details</h2>
+
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>User ID</td>
+        <td id="user-id">Loading...</td>
+    </tr>
+    <tr>
+        <td>Order ID</td>
+        <td id="order-id">Loading...</td>
+    </tr>
+    <tr>
+        <td>Account Number</td>
+        <td id="accountno">Loading...</td>
+    </tr>
+    <tr>
+        <td>IFSC Code</td>
+        <td id="ifsccode">Loading...</td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td id="name">Loading...</td>
+    </tr>
+    <tr>
+        <td>Father's Name</td>
+        <td id="fathername">Loading...</td>
+    </tr>
+    <tr>
+        <td>Date of Birth</td>
+        <td id="date_of_birth">Loading...</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td id="address">Loading...</td>
+    </tr>
+    <tr>
+        <td>Mobile Number</td>
+        <td id="mobilenumber">Loading...</td>
+    </tr>
+    <tr>
+        <td>Email ID</td>
+        <td id="email">Loading...</td>
+    </tr>
+    <tr>
+        <td>Branch</td>
+        <td id="branch">Loading...</td>
+    </tr>
+    <tr>
+        <td>Branch Address</td>
+        <td id="branchAddress">Loading...</td>
+    </tr>
+    <tr>
+        <td>Account Open Date</td>
+        <td id="accountOpenDate">Loading...</td>
+    </tr>
+</table>
+
+<script>
+    async function fetchAccountDetails() {
+        try {
+            const response = await fetch('/api/account-details');
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            console.log('Fetched data:', data); // Log the data to see its structure
+
+            if (Array.isArray(data) && data.length > 0) {
+                const account = data[0]; // Use the first item from the array
+
+                document.getElementById('user-id').innerText = account.userId || 'N/A';
+                document.getElementById('order-id').innerText = account.orderId || 'N/A';
+                document.getElementById('accountno').innerText = account.accountNo || 'N/A';
+                document.getElementById('ifsccode').innerText = account.ifscCode || 'N/A';
+                document.getElementById('name').innerText = account.name || 'N/A';
+                document.getElementById('fathername').innerText = account.fatherName || 'N/A';
+                document.getElementById('date_of_birth').innerText = account.date_of_birth || 'N/A';
+                document.getElementById('address').innerText = account.address || 'N/A';
+                document.getElementById('mobilenumber').innerText = account.mobileNumber || 'N/A';
+                document.getElementById('email').innerText = account.emailId || 'N/A';
+                document.getElementById('branch').innerText = account.branch || 'N/A';
+                document.getElementById('branchAddress').innerText = account.branchAddress || 'N/A';
+                document.getElementById('accountOpenDate').innerText = account.accountOpenDate || 'N/A';
+            } else {
+                console.error('No account details found or data is not an array.');
+            }
+        } catch (error) {
+            console.error('Error fetching account details:', error);
+        }
+    }
+
+    window.onload = fetchAccountDetails;
+</script>
+
+</body>
+</html>

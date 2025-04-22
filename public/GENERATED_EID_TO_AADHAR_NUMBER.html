@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="GENERATED_EID_TO_AADHAR_NUMBER.css">
+  <title>A DIGITAL INDIA Cyber Cafe</title>
+</head>
+<body onload="generate()">
+  <div class="borderwith">
+    <div class="weare">
+      <div class="Trying">
+        <div class="out">
+          <p>We Are Trying Our Best GENERATED EID..<br>TO AADHAAR NO...</p>
+        </div>
+
+        <!-- Add an ID to the form -->
+        <form id="enrollmentForm" action="/saveEnrollment" method="post" onsubmit="return printmsg(event)">
+          <label for="Enrollment_Number">Enrollment Number:</label>
+          <input type="text" id="Enrollment_Number" name="Enrollment_Number" maxlength="14" required>
+
+          <div class="inline" onclick="generate()">
+            <i class="fas fa-sync"></i>
+          </div>
+          <div id="image" class="inline" selectable="False"></div><br><br>
+
+          <div class="generate" id="generate">
+            <div id="user-input" class="inline">
+              <input type="text" id="submit" placeholder="Captcha code" required />
+            </div>
+
+            <input type="submit" id="btn" value="Submit"/>
+            <p id="key"></p>
+          </div>
+        </form>
+      </div>
+
+      <div class="Aadhaar_No">
+        <p>GENERATED EID TO AADHAAR NUMBER SERVICE LIST</p>
+        <p>Aadhaar No:</p>
+        <table>
+          <tr>
+            <th>Generated :</th>
+            <th>Message :</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let captcha;
+
+    function generate() {
+      document.getElementById("submit").value = "";
+      captcha = document.getElementById("image");
+      let uniquechar = "";
+
+      const randomchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (let i = 0; i < 5; i++) {
+        uniquechar += randomchar.charAt(Math.floor(Math.random() * randomchar.length));
+      }
+
+      captcha.innerHTML = uniquechar;
+    }
+
+    function printmsg(event) {
+      event.preventDefault(); // Prevent form submission for CAPTCHA check
+      const usr_input = document.getElementById("submit").value;
+
+      if (usr_input === captcha.innerHTML) {
+        document.getElementById("key").innerHTML = "Matched";
+        generate();
+        document.getElementById('enrollmentForm').submit(); // Submit the form after CAPTCHA validation
+      } else {
+        document.getElementById("key").innerHTML = "Not Matched";
+        generate();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA DIGITAL INDIA Cyber Cafe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="Certificate">
+        <h1>User Profile</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td id="name">N/A</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td id="email">N/A</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td id="phoneNumber">N/A</td>
+            </tr>
+            <tr>
+                <th>Wallet Balance</th>
+                <td id="walletBalance">N/A</td>
+            </tr>
+            <tr>
+                <th>Unique Number</th>
+                <td id="uniqueNumber">N/A</td>
+            </tr>
+            <tr>
+                <th>Register Date</th>
+                <td id="registerDate">N/A</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/api/profile',
+                method: 'GET',
+                success: function (data) {
+                    $('#name').text(data.name || 'N/A');
+                    $('#email').text(data.email || 'N/A');
+                    $('#phoneNumber').text(data.PhoneNumber || 'N/A');
+                    $('#walletBalance').text(data.walletBalance || 'N/A');
+                    $('#uniqueNumber').text(data.uniqueNumber || 'N/A');
+                    $('#registerDate').text(data.registerDate || 'N/A');
+                },
+                error: function (err) {
+                    console.error('Error fetching profile data:', err);
+                    alert('Error fetching profile data');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

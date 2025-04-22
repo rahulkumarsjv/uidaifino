@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="kotakcsbamkdispy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>RA DIGITAL INDIA Cyber Cafe</title>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="kotakbor">
+            <img src="images/kotaklogo-removebg-preview.png" alt="kotaklogo">
+        </div>
+        <div class="kotakidlo">
+            <img src="images/kotaklogo1.jpg" alt="kotal photo logo">
+        </div>
+    </div>
+
+    <div class="kotaklogos">
+        <h1>CERTIFICATE<br><span id="span1">OF APPRECIATION</span></h1>
+    </div>
+
+    <div class="this">
+        <h3 id="thiss">This Certificate is awarded to</h3>
+        <p>Full NAME: <span id="name"></span></p>
+        <p>KOTAK BC PARTNER: <span id="kotakBCPartner"></span></p>
+        <h4>We Appreciate and recognize your contribution towards<br><span style="color: #001eff;">RA DIGITAL INDIA</span> for the Quarter</h4>
+    </div>
+
+    <div class="amarnath">
+        <div class="amarnathjanardhan">
+            <div class="sinphoto">
+                <img src="images/amarn-removebg-preview.png" alt="" width="40%">
+                <span>Amarnath Janardhan</span>
+                <span>Sr. Regional Business Manager</span>
+                <span>Kotak Mahindra Bank Limited</span>
+            </div>
+        </div>
+        <div class="amarnathjanardhan">
+            <img src="images/—Pngtree—gold star medal_8080378.png" alt="" width="30%" height="130px">
+        </div>
+        <div class="amarnathjanardhan">
+            <div class="sinphotoo">
+                <img src="images/img-removebg-preview.png" alt="" width="20%">
+                <span>Monil Chandna</span>
+                <span>EVP & National Manager Bancassurance</span>
+                <span>RA Digital India</span>
+            </div>
+        </div>
+    </div>   
+
+    <script>
+        // Fetch data from local storage
+        const certificateData = JSON.parse(localStorage.getItem('certificateData'));
+
+        if (certificateData) {
+            document.getElementById('name').textContent = `${certificateData.firstName} ${certificateData.lastName}`;
+            document.getElementById('kotakBCPartner').textContent = certificateData.kotakBCPartner;
+        } else {
+            console.error('No data found in local storage.');
+        }
+    </script>
+</body>
+</html>
